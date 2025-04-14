@@ -1,0 +1,14 @@
+{
+  "title": "AddTasks",
+  "description": "describes the required properties to store user's tasks",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string"
+    },
+    "entry": {
+      "type": "string"
+    }
+  },
+  "required": ["email", "entry"]
+}

@@ -1,0 +1,14 @@
+{
+  "title": "EditTasks",
+  "description": "describes the required properties to edit an user's tasks",
+  "type": "object",
+  "properties": {
+    "taskId": {
+      "type": "string"
+    },
+    "entry": {
+      "type": "string"
+    }
+  },
+  "required": ["taskId", "entry"]
+}

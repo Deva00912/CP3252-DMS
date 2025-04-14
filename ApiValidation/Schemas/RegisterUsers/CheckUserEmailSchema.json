@@ -1,0 +1,12 @@
+{
+  "title": "isUserEmailExists",
+  "description": "describes the properties required to check the email is existing in database or not",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
+    }
+  },
+  "required": ["email"]
+}
