@@ -6,6 +6,7 @@ const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
 const expect = chai.expect;
+const { testUser2, testUser1 } = require("../Services/Utils/Constants");
 
 describe("User API", () => {
   describe("POST login/check", () => {
@@ -14,8 +15,8 @@ describe("User API", () => {
         .request("http://localhost:7000")
         .post("/login/authUserAndLogin")
         .send({
-          email: "devendran0912",
-          password: "Dev@1234",
+          email: testUser2?.email,
+          password: testUser2?.password,
         })
         .end((err, res) => {
           if (err) {
@@ -33,7 +34,7 @@ describe("User API", () => {
         .request("http://localhost:7000")
         .post("/login/authUserAndLogin")
         .send({
-          email: "devendran0912",
+          email: testUser2?.email,
           password: "Deve@1234",
         })
         .end((err, res) => {
@@ -73,7 +74,7 @@ describe("User API", () => {
         .request("http://localhost:7000")
         .post("/login/authUserAndLogin")
         .send({
-          email: "tatsumi0912",
+          email: "tatsumi0912@gmail.com",
           password: "Dev@1234",
         })
         .end((err, res) => {
@@ -95,13 +96,7 @@ describe("User API", () => {
       chai
         .request("http://localhost:7000")
         .put("/register/createUser")
-        .send({
-          email: "anitha" + crypto.randomUUID(),
-          firstName: "Anitha",
-          lastName: "K",
-          password: "Dev@1234",
-          confirmPassword: "Dev@1234",
-        })
+        .send({ ...testUser1 })
         .end((err, res) => {
           if (err) {
             expect(res).to.have.status(500);
@@ -119,11 +114,11 @@ describe("User API", () => {
           .request("http://localhost:7000")
           .put("/register/createUser")
           .send({
-            email: "anitha0912",
-            firstName: "Anitha",
-            lastName: "K",
-            password: "Dev@1234",
-            confirmPassword: "Dev@1234",
+            email: `${testUser2?.email}`,
+            firstName: `${testUser2?.firstName}`,
+            lastName: `${testUser2?.lastName}`,
+            password: `${testUser2?.password}`,
+            confirmPassword: `${testUser2?.confirmPassword}`,
           })
           .end((err, res) => {
             if (err) {
@@ -136,9 +131,7 @@ describe("User API", () => {
                 .equal("User already exists");
             }
           });
-      } catch (error) {
-        // console.log("error", error);
-      }
+      } catch (error) {}
     });
 
     it("error - Creating an user with an invalid email", () => {
@@ -158,7 +151,7 @@ describe("User API", () => {
             expect(res.body).to.have.property("message");
           } else {
             expect(res).to.have.status(400);
-            expect(res.body).to.have.property("ackStatus");
+            expect(res.body).to.have.property("ackStatus").equal("failed");
           }
         });
     });
@@ -168,11 +161,11 @@ describe("User API", () => {
         .request("http://localhost:7000")
         .put("/register/createUser")
         .send({
-          email: "Anitha0981",
-          password: "Dev@1234",
-          firstName: "Anitha",
-          lastName: "K",
-          confirmPassword: "Dev@1234",
+          email: `${testUser1?.email}`,
+          password: `${testUser1?.password}`,
+          firstName: `${testUser1?.firstName}`,
+          lastName: `${testUser1?.lastName}`,
+          confirmPassword: "rgsergserge@Tvbj3423",
         })
         .end((err, res) => {
           if (err) {
@@ -180,12 +173,14 @@ describe("User API", () => {
             expect(res.body).to.have.property("message");
           } else {
             expect(res).to.have.status(400);
+            expect(res.body).to.have.property("ackStatus").equal("completed");
             expect(res.body)
               .to.have.property("message")
               .equal("Enter details correctly");
           }
         });
     });
+
     it("getting all users", () => {
       chai
         .request("http://localhost:7000")
@@ -202,8 +197,8 @@ describe("User API", () => {
         .request("http://localhost:7000")
         .post("/register/isUserEmailExists")
         .send({
-          email: "devendran0912",
-          password: "Dev@1234",
+          email: `${testUser2?.email}`,
+          password: `${testUser2?.password}`,
         })
         .end((err, res) => {
           if (err) {
@@ -224,8 +219,8 @@ describe("User API", () => {
         .request("http://localhost:7000")
         .post("/register/isUserEmailExists")
         .send({
-          email: "abcd1234",
-          password: "Dev@1234",
+          email: `${testUser1?.email}`,
+          password: `${testUser1?.password}`,
         })
         .end((err, res) => {
           if (err) {
@@ -246,9 +241,13 @@ describe("User API", () => {
     it("Adding an valid task", () => {
       chai
         .request("http://localhost:7000")
-        .post("/task/addTask")
+        .put("/task/addTask")
+        .set(
+          "x-access-token",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
+        )
         .send({
-          userId: "64f341992245ab97687076a2",
+          email: `${testUser2?.email}`,
           entry: "Test api integration 1",
         })
         .end((err, res) => {
@@ -265,9 +264,13 @@ describe("User API", () => {
     it("give warning - adding an empty entry", () => {
       chai
         .request("http://localhost:7000")
-        .post("/task/addTask")
+        .put("/task/addTask")
+        .set(
+          "x-access-token",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
+        )
         .send({
-          userId: "64f341992245ab97687076a2",
+          email: `${testUser2?.email}`,
           entry: "",
         })
         .end((err, res) => {
@@ -287,8 +290,12 @@ describe("User API", () => {
       chai
         .request("http://localhost:7000")
         .post("/task/addTask")
+        .set(
+          "x-access-token",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
+        )
         .send({
-          userId: "64f341992245ab97687076a2",
+          email: ``,
           entry: "",
         })
         .end((err, res) => {
@@ -308,9 +315,14 @@ describe("User API", () => {
       chai
         .request("http://localhost:7000")
         .patch("/task/editTask")
+        .set(
+          "x-access-token",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
+        )
         .send({
-          taskId: "650a7d370569e1cbfe957b36",
-          entry: "Test api integration edit - 1",
+          email: `${testUser2?.email}`,
+          taskId: `${testUser2?.tasks?.id1}`,
+          entry: "Test api integration 1 - update",
         })
         .end((err, res) => {
           if (err) {
@@ -327,9 +339,14 @@ describe("User API", () => {
       chai
         .request("http://localhost:7000")
         .patch("/task/editTask")
+        .set(
+          "x-access-token",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
+        )
         .send({
+          email: `${testUser2?.email}`,
+          entry: "Test api integration 1 edit",
           taskId: "64f341e92245ab97687076c5",
-          entry: "Test api integration edit - 1",
         })
         .end((err, res) => {
           if (err) {
@@ -348,9 +365,14 @@ describe("User API", () => {
       chai
         .request("http://localhost:7000")
         .patch("/task/editTask")
+        .set(
+          "x-access-token",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
+        )
         .send({
-          taskId: "64f341e92245ab97687076c5",
+          email: `${testUser2?.email}`,
           entry: "",
+          taskId: "64f341e92245ab97687076c5",
         })
         .end((err, res) => {
           if (err) {
@@ -384,6 +406,10 @@ describe("User API", () => {
       chai
         .request("http://localhost:7000")
         .delete("/task/deleteTask/650bfb44591bbd2879e5a92a")
+        .set(
+          "x-access-token",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
+        )
         .end((err, res) => {
           if (err) {
             expect(res).to.have.status(500);
@@ -402,7 +428,14 @@ describe("User API", () => {
     it("getting user tasks", () => {
       chai
         .request("http://localhost:7000")
-        .get("/task/findUserTasks/650a93674e3cc62ca66a89b3")
+        .post("/task/findUserTasks")
+        .set(
+          "x-access-token",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
+        )
+        .send({
+          email: `${testUser2?.email}`,
+        })
         .end((err, res) => {
           if (err) {
             expect(res).to.have.status(500);
@@ -419,7 +452,14 @@ describe("User API", () => {
     it("getting an non existing user tasks", () => {
       chai
         .request("http://localhost:7000")
-        .get("/task/findUserTasks/64f341d42245ab97687076b9")
+        .post("/task/findUserTasks")
+        .set(
+          "x-access-token",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
+        )
+        .send({
+          email: `${testUser1?.email}`,
+        })
         .end((err, res) => {
           if (err) {
             expect(res).to.have.status(500);

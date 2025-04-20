@@ -23,10 +23,13 @@ const validate = (userData) => {
     userData.firstName &&
     userData.lastName &&
     userData.password &&
+    userData.confirmPassword &&
     regex.email.test(userData.email) &&
     regex.password.test(userData.password) &&
     regex.text.test(userData.firstName) &&
-    regex.text.test(userData.lastName)
+    regex.text.test(userData.lastName) &&
+    regex.password.test(userData.confirmPassword) &&
+    userData.confirmPassword === userData.password
     ? true
     : false;
 };
@@ -113,8 +116,9 @@ const checkPasswordAndLogin = async (email, password) => {
   if (!user) {
     throwAuthError("User does not exists");
   }
+  const tokenCheck = await bcrypt.compare(password, user.password);
 
-  if (user && (await bcrypt.compare(password, user.password))) {
+  if (user && tokenCheck) {
     user.token = generateJwtToken(user.userId, user.email);
   } else {
     throwAuthError("Invalid credentials");
