@@ -373,40 +373,40 @@ describe("User API", () => {
         });
     });
 
-    it.skip("deleting an existing task", () => {
-      chai
-        .request(BASE_URL)
-        .delete("/task/deleteTask/650a7d370569e1cbfe957b41")
-        .end((err, res) => {
-          if (err) {
-            expect(res).to.have.status(500);
-            expect(res.body).to.have.property("message");
-          } else {
-            expect(res).to.have.status(200);
-            expect(res.body).to.have.property("message").equal("Task deleted");
-          }
-        });
-    });
+    // it.skip("deleting an existing task", () => {
+    //   chai
+    //     .request(BASE_URL)
+    //     .delete("/task/deleteTask/650a7d370569e1cbfe957b41")
+    //     .end((err, res) => {
+    //       if (err) {
+    //         expect(res).to.have.status(500);
+    //         expect(res.body).to.have.property("message");
+    //       } else {
+    //         expect(res).to.have.status(200);
+    //         expect(res.body).to.have.property("message").equal("Task deleted");
+    //       }
+    //     });
+    // });
 
-    it.skip("give warning deleting an non - existing task", () => {
-      chai
-        .request(BASE_URL)
-        .delete("/task/deleteTask/650bfb44591bbd2879e5a92a")
-        .set("x-access-token", process.env.LOGIN_TOKEN)
-        .end((err, res) => {
-          if (err) {
-            expect(res).to.have.status(500);
-            expect(res.body).to.have.property("message");
-          } else {
-            expect(res).to.have.status(400);
-            expect(res.body)
-              .to.have.property("message")
-              .equal("Task not found!");
-            // expect(res.body).to.have.property("error");
-            // expect(res.body).to.have.property("ackStatus").equal("failed");
-          }
-        });
-    });
+    // it.skip("give warning deleting an non - existing task", () => {
+    //   chai
+    //     .request(BASE_URL)
+    //     .delete("/task/deleteTask/650bfb44591bbd2879e5a92a")
+    //     .set("x-access-token", process.env.LOGIN_TOKEN)
+    //     .end((err, res) => {
+    //       if (err) {
+    //         expect(res).to.have.status(500);
+    //         expect(res.body).to.have.property("message");
+    //       } else {
+    //         expect(res).to.have.status(400);
+    //         expect(res.body)
+    //           .to.have.property("message")
+    //           .equal("Task not found!");
+    //         // expect(res.body).to.have.property("error");
+    //         // expect(res.body).to.have.property("ackStatus").equal("failed");
+    //       }
+    //     });
+    // });
 
     it("getting user tasks", () => {
       chai
@@ -429,26 +429,26 @@ describe("User API", () => {
         });
     });
 
-    it.skip("getting an non existing user tasks", () => {
-      chai
-        .request(BASE_URL)
-        .post("/task/findUserTasks")
-        .set("x-access-token", process.env.LOGIN_TOKEN)
-        .send({
-          email: `${testUser1?.email}`,
-        })
-        .end((err, res) => {
-          if (err) {
-            expect(res).to.have.status(500);
-            expect(res.body).to.have.property("error");
-            expect(res.body).to.have.property("ackStatus").equal("failed");
-          } else {
-            expect(res).to.have.status(404);
-            // expect(res.body).to.have.property("message").equal("No Tasks");
-            expect(res.body).to.have.property("error");
-            // expect(res.body).to.have.property("ackStatus").equal("failed");
-          }
-        });
-    });
+    // it.skip("getting an non existing user tasks", () => {
+    //   chai
+    //     .request(BASE_URL)
+    //     .post("/task/findUserTasks")
+    //     .set("x-access-token", process.env.LOGIN_TOKEN)
+    //     .send({
+    //       email: `${testUser1?.email}`,
+    //     })
+    //     .end((err, res) => {
+    //       if (err) {
+    //         expect(res).to.have.status(500);
+    //         expect(res.body).to.have.property("error");
+    //         expect(res.body).to.have.property("ackStatus").equal("failed");
+    //       } else {
+    //         expect(res).to.have.status(404);
+    //         // expect(res.body).to.have.property("message").equal("No Tasks");
+    //         expect(res.body).to.have.property("error");
+    //         // expect(res.body).to.have.property("ackStatus").equal("failed");
+    //       }
+    //     });
+    // });
   });
 });
