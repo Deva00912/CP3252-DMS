@@ -60,9 +60,6 @@ jobs:
           TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
           MONGO_URL: ${{ secrets.MONGO_URL }}
 
-      - name: Stop Server
-        run: kill $(lsof -t -i:7000) || echo "No process to kill"
-
       - name: Run Tests
         run: npm test  # Ensure tests include DB cleanup
         env:
