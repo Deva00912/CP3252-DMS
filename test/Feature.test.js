@@ -35,6 +35,10 @@ describe("Testing User features", () => {
       .catch((error) => console.log(error.message));
   });
 
+  after(() => {
+    console.log("All tests completed");
+  });
+
   it("Validating user - valid details", () => {
     const result = validate(testUser1);
     expect(result).to.be.equal(true);

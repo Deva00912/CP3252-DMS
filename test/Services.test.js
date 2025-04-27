@@ -34,6 +34,9 @@ describe("Testing services", () => {
       })
       .catch((error) => console.log(error.message));
   });
+  after(() => {
+    console.log("All tests completed");
+  });
   describe("User services", () => {
     it("Getting all user", async () => {
       const response = await getAllUsersFromDB();

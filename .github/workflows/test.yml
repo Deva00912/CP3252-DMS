@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 # jobs:
 #   test:
@@ -54,18 +54,18 @@ jobs:
       - name: Start Server
         run: npm start &
         env:
-          PORT: 7000
-          TEST_BASE_URL: "http://localhost:7000"  # Point to local CI server
-          LOGIN_TOKEN : ${{ secrets.LOGIN_TOKEN }}
+          PORT: 7001
+          TEST_BASE_URL: "http://localhost:7001" # Point to local CI server
+          LOGIN_TOKEN: ${{ secrets.LOGIN_TOKEN }}
           TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
           MONGO_URL: ${{ secrets.MONGO_URL }}
 
       - name: Run Tests
-        run: npm test  # Ensure tests include DB cleanup
+        run: npm test # Ensure tests include DB cleanup
         env:
-          PORT: 7000
-          TEST_BASE_URL: "http://localhost:7000"  # Point to local CI server
-          LOGIN_TOKEN : ${{ secrets.LOGIN_TOKEN }}
+          # PORT: 7001
+          TEST_BASE_URL: "http://localhost:7001" # Point to local CI server
+          LOGIN_TOKEN: ${{ secrets.LOGIN_TOKEN }}
           TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
           MONGO_URL: ${{ secrets.MONGO_URL }}
 

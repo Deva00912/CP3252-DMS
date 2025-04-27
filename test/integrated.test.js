@@ -13,6 +13,9 @@ const {
 } = require("../Services/Utils/Constants");
 
 describe("User API", () => {
+  after(() => {
+    console.log("All tests completed");
+  });
   describe("POST login/check", () => {
     it.skip("should allow existing user - log in", () => {
       chai
