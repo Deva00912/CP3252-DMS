@@ -26,8 +26,9 @@ jobs:
         run: npm start &  # Run server in background
         env:
           PORT: 7000
-          JWT_SECRET: "test-secret"
-          MONGODB_URI: "mongodb://localhost:27017/test-db"
+          LOGIN_TOKEN : ${{ secrets.LOGIN_TOKEN }}
+          TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
+          MONGODB_URI: ${{ secrets.MONGO_URL }}
 
       - name: Run Tests
         run: npm test
