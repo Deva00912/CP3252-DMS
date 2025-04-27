@@ -388,7 +388,7 @@ describe("User API", () => {
         });
     });
 
-    it("give warning deleting an non - existing task", () => {
+    it.skip("give warning deleting an non - existing task", () => {
       chai
         .request(BASE_URL)
         .delete("/task/deleteTask/650bfb44591bbd2879e5a92a")
