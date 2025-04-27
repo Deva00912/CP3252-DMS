@@ -9,35 +9,6 @@ on:
   pull_request:
     branches: ["main"]
 
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: 18.x
-
-#       - run: npm install
-
-#       - name: Start Server
-#         run: npm start &  # Run server in background
-#         env:
-#           PORT: 7000
-#           LOGIN_TOKEN : ${{ secrets.LOGIN_TOKEN }}
-#           TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
-#           MONGO_URL: ${{ secrets.MONGO_URL }}
-
-#       - name: Run Tests
-#         run: npm test
-#         env:
-#           TEST_BASE_URL: "http://localhost:7000"  # Point to local CI server
-#           PORT: 7000
-#           LOGIN_TOKEN : ${{ secrets.LOGIN_TOKEN }}
-#           TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
-#           MONGO_URL: ${{ secrets.MONGO_URL }}
 jobs:
   test:
     runs-on: ubuntu-latest
