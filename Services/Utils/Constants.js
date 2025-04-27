@@ -81,7 +81,7 @@ const testUser3 = {
 };
 
 // In your test setup file (e.g., testConfig.js)
-const BASE_URL = process.env.TEST_BASE_URL || BASE_URL;
+const BASE_URL = process.env.TEST_BASE_URL || "http://localhost:7000";
 
 module.exports = {
   regex,
