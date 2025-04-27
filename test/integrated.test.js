@@ -246,10 +246,7 @@ describe("User API", () => {
       chai
         .request(BASE_URL)
         .put("/task/addTask")
-        .set(
-          "x-access-token",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
-        )
+        .set("x-access-token", process.env.LOGIN_TOKEN)
         .send({
           email: `${testUser2?.email}`,
           entry: "Test api integration 1",
@@ -269,10 +266,7 @@ describe("User API", () => {
       chai
         .request(BASE_URL)
         .put("/task/addTask")
-        .set(
-          "x-access-token",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
-        )
+        .set("x-access-token", process.env.LOGIN_TOKEN)
         .send({
           email: `${testUser2?.email}`,
           entry: "",
@@ -294,10 +288,7 @@ describe("User API", () => {
       chai
         .request(BASE_URL)
         .post("/task/addTask")
-        .set(
-          "x-access-token",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
-        )
+        .set("x-access-token", process.env.LOGIN_TOKEN)
         .send({
           email: ``,
           entry: "",
@@ -319,10 +310,7 @@ describe("User API", () => {
       chai
         .request(BASE_URL)
         .patch("/task/editTask")
-        .set(
-          "x-access-token",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
-        )
+        .set("x-access-token", process.env.LOGIN_TOKEN)
         .send({
           email: `${testUser2?.email}`,
           taskId: `${testUser2?.tasks?.id1}`,
@@ -343,10 +331,7 @@ describe("User API", () => {
       chai
         .request(BASE_URL)
         .patch("/task/editTask")
-        .set(
-          "x-access-token",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
-        )
+        .set("x-access-token", process.env.LOGIN_TOKEN)
         .send({
           email: `${testUser2?.email}`,
           entry: "Test api integration 1 edit",
@@ -369,10 +354,7 @@ describe("User API", () => {
       chai
         .request(BASE_URL)
         .patch("/task/editTask")
-        .set(
-          "x-access-token",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
-        )
+        .set("x-access-token", process.env.LOGIN_TOKEN)
         .send({
           email: `${testUser2?.email}`,
           entry: "",
@@ -410,10 +392,7 @@ describe("User API", () => {
       chai
         .request(BASE_URL)
         .delete("/task/deleteTask/650bfb44591bbd2879e5a92a")
-        .set(
-          "x-access-token",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
-        )
+        .set("x-access-token", process.env.LOGIN_TOKEN)
         .end((err, res) => {
           if (err) {
             expect(res).to.have.status(500);
@@ -433,10 +412,7 @@ describe("User API", () => {
       chai
         .request(BASE_URL)
         .post("/task/findUserTasks")
-        .set(
-          "x-access-token",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
-        )
+        .set("x-access-token", process.env.LOGIN_TOKEN)
         .send({
           email: `${testUser2?.email}`,
         })
@@ -457,10 +433,7 @@ describe("User API", () => {
       chai
         .request(BASE_URL)
         .post("/task/findUserTasks")
-        .set(
-          "x-access-token",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA0ZjUwNzBmOGUxOTlmYjYzNzJhODAiLCJlbWFpbCI6ImtpbWRva2phOTg1M0BvcnYuY29tIiwiaWF0IjoxNzQ1MTYyNTQ2LCJleHAiOjE3NDUxNjYxNDZ9.1Ecu6sTRK8D1FN_BgkkqKyZStZ-MV4FZYoPRpT1HBxc"
-        )
+        .set("x-access-token", process.env.LOGIN_TOKEN)
         .send({
           email: `${testUser1?.email}`,
         })
