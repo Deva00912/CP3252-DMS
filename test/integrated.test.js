@@ -6,13 +6,17 @@ const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
 const expect = chai.expect;
-const { testUser2, testUser1 } = require("../Services/Utils/Constants");
+const {
+  testUser2,
+  testUser1,
+  BASE_URL,
+} = require("../Services/Utils/Constants");
 
 describe("User API", () => {
   describe("POST login/check", () => {
     it("should handle existing user", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .post("/login/authUserAndLogin")
         .send({
           email: testUser2?.email,
@@ -31,7 +35,7 @@ describe("User API", () => {
 
     it("should handle existing user - invalid credentials (password)", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .post("/login/authUserAndLogin")
         .send({
           email: testUser2?.email,
@@ -52,7 +56,7 @@ describe("User API", () => {
 
     it("should handle existing user - invalid credentials (email)", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .post("/login/authUserAndLogin")
         .send({
           email: "Devendran0912",
@@ -71,7 +75,7 @@ describe("User API", () => {
 
     it("should handle non existing user", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .post("/login/authUserAndLogin")
         .send({
           email: "tatsumi0912@gmail.com",
@@ -94,7 +98,7 @@ describe("User API", () => {
   describe("Register API", () => {
     it("Creating an valid user", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .put("/register/createUser")
         .send({ ...testUser1 })
         .end((err, res) => {
@@ -111,7 +115,7 @@ describe("User API", () => {
     it("error - Creating an existing valid user", () => {
       try {
         chai
-          .request("http://localhost:7000")
+          .request(BASE_URL)
           .put("/register/createUser")
           .send({
             email: `${testUser2?.email}`,
@@ -136,7 +140,7 @@ describe("User API", () => {
 
     it("error - Creating an user with an invalid email", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .put("/register/createUser")
         .send({
           email: "Anitha8899",
@@ -158,7 +162,7 @@ describe("User API", () => {
 
     it("give error - creating a user with no password match", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .put("/register/createUser")
         .send({
           email: `${testUser1?.email}`,
@@ -183,7 +187,7 @@ describe("User API", () => {
 
     it("getting all users", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .get("/register/getUsers")
         .end((err, res) => {
           expect(res).to.have.status(200);
@@ -194,7 +198,7 @@ describe("User API", () => {
 
     it("checking whether an email exist? - email exists", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .post("/register/isUserEmailExists")
         .send({
           email: `${testUser2?.email}`,
@@ -216,7 +220,7 @@ describe("User API", () => {
 
     it("checking whether an email exist? - email not exists", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .post("/register/isUserEmailExists")
         .send({
           email: `${testUser1?.email}`,
@@ -240,7 +244,7 @@ describe("User API", () => {
   describe("Tasks API", () => {
     it("Adding an valid task", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .put("/task/addTask")
         .set(
           "x-access-token",
@@ -263,7 +267,7 @@ describe("User API", () => {
 
     it("give warning - adding an empty entry", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .put("/task/addTask")
         .set(
           "x-access-token",
@@ -288,7 +292,7 @@ describe("User API", () => {
 
     it("give warning - adding an empty task", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .post("/task/addTask")
         .set(
           "x-access-token",
@@ -313,7 +317,7 @@ describe("User API", () => {
 
     it("Editing an valid task", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .patch("/task/editTask")
         .set(
           "x-access-token",
@@ -337,7 +341,7 @@ describe("User API", () => {
 
     it("give warning - editing an non existing task", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .patch("/task/editTask")
         .set(
           "x-access-token",
@@ -363,7 +367,7 @@ describe("User API", () => {
 
     it("give warning - editing an empty task", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .patch("/task/editTask")
         .set(
           "x-access-token",
@@ -389,7 +393,7 @@ describe("User API", () => {
 
     it.skip("deleting an existing task", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .delete("/task/deleteTask/650a7d370569e1cbfe957b41")
         .end((err, res) => {
           if (err) {
@@ -404,7 +408,7 @@ describe("User API", () => {
 
     it("give warning deleting an non - existing task", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .delete("/task/deleteTask/650bfb44591bbd2879e5a92a")
         .set(
           "x-access-token",
@@ -427,7 +431,7 @@ describe("User API", () => {
 
     it("getting user tasks", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .post("/task/findUserTasks")
         .set(
           "x-access-token",
@@ -451,7 +455,7 @@ describe("User API", () => {
 
     it("getting an non existing user tasks", () => {
       chai
-        .request("http://localhost:7000")
+        .request(BASE_URL)
         .post("/task/findUserTasks")
         .set(
           "x-access-token",

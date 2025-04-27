@@ -80,6 +80,9 @@ const testUser3 = {
   password: "Doe@1234",
 };
 
+// In your test setup file (e.g., testConfig.js)
+const BASE_URL = process.env.TEST_BASE_URL || BASE_URL;
+
 module.exports = {
   regex,
   makeString,
@@ -88,4 +91,5 @@ module.exports = {
   testUser1,
   testUser2,
   testUser3,
+  BASE_URL,
 };

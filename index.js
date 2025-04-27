@@ -24,6 +24,7 @@ mongoose
     console.log(" MongoDB Database connected");
   })
   .catch((error) => {
+    console.log({ env: process?.env });
     console.log("MongoDB Connection failed");
     console.log(error.message);
   });
