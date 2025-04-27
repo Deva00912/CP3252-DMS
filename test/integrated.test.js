@@ -43,6 +43,9 @@ describe("User API", () => {
         })
         .end((err, res) => {
           if (err) {
+            console.log({
+              err,
+            });
             expect(res).to.have.status(500);
             expect(res.body).to.have.property("message");
           } else {
