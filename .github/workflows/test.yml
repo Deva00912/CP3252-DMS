@@ -34,3 +34,7 @@ jobs:
         run: npm test
         env:
           TEST_BASE_URL: "http://localhost:7000"  # Point to local CI server
+          PORT: 7000
+          LOGIN_TOKEN : ${{ secrets.LOGIN_TOKEN }}
+          TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
+          MONGODB_URI: ${{ secrets.MONGO_URL }}
