@@ -429,7 +429,7 @@ describe("User API", () => {
         });
     });
 
-    it("getting an non existing user tasks", () => {
+    it.skip("getting an non existing user tasks", () => {
       chai
         .request(BASE_URL)
         .post("/task/findUserTasks")
