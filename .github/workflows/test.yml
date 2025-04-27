@@ -28,7 +28,7 @@ jobs:
           PORT: 7000
           LOGIN_TOKEN : ${{ secrets.LOGIN_TOKEN }}
           TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
-          MONGODB_URI: ${{ secrets.MONGO_URL }}
+          MONGODB_URL: ${{ secrets.MONGO_URL }}
 
       - name: Run Tests
         run: npm test
@@ -37,4 +37,4 @@ jobs:
           PORT: 7000
           LOGIN_TOKEN : ${{ secrets.LOGIN_TOKEN }}
           TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
-          MONGODB_URI: ${{ secrets.MONGO_URL }}
+          MONGODB_URL: ${{ secrets.MONGO_URL }}
