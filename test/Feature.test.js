@@ -335,16 +335,16 @@ describe("Testing Tasks features", () => {
       .to.be.equal("Task cannot be empty");
   });
 
-  it.skip("valid deletion", async () => {
-    const taskId = testUser2?.tasks?.id3;
+  // it.skip("valid deletion", async () => {
+  //   const taskId = testUser2?.tasks?.id3;
 
-    const response = await deleteTaskFeature(taskId);
-    expect(response).to.be.a("object");
-    expect(response)
-      .to.be.haveOwnProperty("message")
-      .to.be.equal("Task deleted");
-    expect(response).to.haveOwnProperty("data").to.be.a("object");
-  });
+  //   const response = await deleteTaskFeature(taskId);
+  //   expect(response).to.be.a("object");
+  //   expect(response)
+  //     .to.be.haveOwnProperty("message")
+  //     .to.be.equal("Task deleted");
+  //   expect(response).to.haveOwnProperty("data").to.be.a("object");
+  // });
 
   it("invalid deletion - empty taskId", async () => {
     const taskId = "";

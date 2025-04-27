@@ -115,12 +115,12 @@ describe("Testing services", () => {
       expect(response).to.be.a("object");
     });
 
-    it.skip("Delete an task by taskId", async () => {
-      const taskId = "68020256d912e58a186fe76c";
-      const response = await deleteTaskInDB(taskId);
+    // it.skip("Delete an task by taskId", async () => {
+    //   const taskId = "68020256d912e58a186fe76c";
+    //   const response = await deleteTaskInDB(taskId);
 
-      expect(response).to.be.a("object");
-    });
+    //   expect(response).to.be.a("object");
+    // });
 
     it("Getting user tasks", async () => {
       const userId = "6801fd18580fb9d594a46165";
