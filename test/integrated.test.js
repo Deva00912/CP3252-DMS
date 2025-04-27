@@ -14,7 +14,7 @@ const {
 
 describe("User API", () => {
   describe("POST login/check", () => {
-    it("should handle existing user", () => {
+    it("should allow existing user - log in", () => {
       chai
         .request(BASE_URL)
         .post("/login/authUserAndLogin")
