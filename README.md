@@ -1,6 +1,6 @@
 # SimpleNotes - Backend Service
 
-A robust backend for a Todo application featuring authentication, authorization, and reliable API services. Built with Node.js and Express.
+A robust backend for a motes recording and managing application featuring authentication, authorization, and reliable API services. Built with Node.js and Express.
 
 ![Node.js](https://img.shields.io/badge/Node.js-18.x-green)
 ![Express](https://img.shields.io/badge/Express-4.x-lightgrey)
