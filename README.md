@@ -1,4 +1,4 @@
-# Todo App - Backend Service
+# SimpleNotes - Backend Service
 
 A robust backend for a Todo application featuring authentication, authorization, and reliable API services. Built with Node.js and Express.
 
